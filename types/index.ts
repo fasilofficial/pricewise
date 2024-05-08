@@ -22,6 +22,7 @@ export type Product = {
   description: string;
   category: string;
   reviewsCount: number;
+  starsCount: number;
   stars: number;
   isOutOfStock: Boolean;
   users?: User[];
@@ -41,4 +42,19 @@ export type EmailContent = {
 export type EmailProductInfo = {
   title: string;
   url: string;
+};
+
+export type ProductCardProps = {
+  product: Product;
+};
+
+export type ProductDetailsProps = {
+  params: { id: string };
+};
+
+export type PriceInfoCardProps = {
+  title: string;
+  iconSrc: string;
+  value: string;
+  otherStyles: string;
 };
