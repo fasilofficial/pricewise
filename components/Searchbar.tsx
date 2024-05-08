@@ -1,5 +1,6 @@
 "use client";
 
+import { scrapeAndStoreProduct } from "@/lib/actions";
 import { isValidAmazonProductUrl } from "@/lib/utils";
 import React, { FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -8,7 +9,7 @@ const Searchbar = () => {
   const [searchPrompt, setSearchPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const isValidLink = isValidAmazonProductUrl(searchPrompt);
@@ -20,6 +21,9 @@ const Searchbar = () => {
       setIsLoading(true);
 
       // scrape the products page
+      const product = await scrapeAndStoreProduct(searchPrompt);
+
+      console.log(product)
     } catch (error) {
       console.error("Error:", error);
     } finally {
