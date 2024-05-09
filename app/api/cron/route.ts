@@ -75,5 +75,6 @@ export async function GET() {
     return NextResponse.json({ message: "ok", data: updatedProducts });
   } catch (error) {
     console.log("Error in GET: ", error);
+    throw new Error(`Failed to get all products: ${error.message}`);
   }
 }
