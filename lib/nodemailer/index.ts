@@ -1,9 +1,9 @@
-import { EmailContent, NOTIFICATION, Product } from "@/types";
+import { EmailContent, EmailProductInfo, NOTIFICATION } from "@/types";
 import { error } from "console";
 import nodemailer from "nodemailer";
 
 export const generateEmailBody = async (
-  product: Product,
+  product: EmailProductInfo,
   type: NOTIFICATION
 ) => {
   const THRESHOLD_PERCENTAGE = 40;

@@ -1,4 +1,4 @@
-import { PriceHistoryItem, Product } from "@/types";
+import { NOTIFICATION, PriceHistoryItem, Product } from "@/types";
 
 import { twMerge } from "tailwind-merge";
 import { type ClassValue, clsx } from "clsx";
@@ -119,13 +119,13 @@ export const getEmailNotifType = (
   const lowestPrice = getLowestPrice(currentProduct.priceHistory);
 
   if (scrapedProduct.currentPrice < lowestPrice) {
-    return Notification.LOWEST_PRICE as keyof typeof Notification;
+    return NOTIFICATION.LOWEST_PRICE;
   }
   if (!scrapedProduct.isOutOfStock && currentProduct.isOutOfStock) {
-    return Notification.CHANGE_OF_STOCK as keyof typeof Notification;
+    return NOTIFICATION.CHANGE_OF_STOCK;
   }
   if (scrapedProduct.discountRate >= THRESHOLD_PERCENTAGE) {
-    return Notification.THRESHOLD_MET as keyof typeof Notification;
+    return NOTIFICATION.THRESHOLD_MET;
   }
 
   return null;
